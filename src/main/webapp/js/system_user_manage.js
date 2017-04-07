@@ -46,10 +46,11 @@ function addData(data){
 	var r = JSON.parse(data);
 	var str;
 	var list=r.map;
-	for(var i=0;i<list.length;i++){
-		for(var j=0;j<5;j++){
+	for(var i=list.length-2;i<list.length;i++){
+		var dList = list[i].length
+		for(var j=0;j<dList;j++){
 			str+="<tr><td>"+list[i][j].username+"</td><td>"+list[i][j].rolename+"</td><td>"+list[i][j].email+"</td><td>"+
-			"<button type='button' class='btn btn-xs btn-' onclick='adjust()'>编辑</button>  "+
+			"<button type='button' class='btn btn-xs btn-primary' onclick='adjust()'>编辑</button>  "+
 			"<button type='button' class='btn btn-xs btn-primary'>删除</button>"+
 			"</td></tr>";
 		}
