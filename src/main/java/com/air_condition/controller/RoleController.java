@@ -20,10 +20,18 @@ public class RoleController {
 	private RoleServiceI roleService;
 	
 	
-	@RequestMapping("/getAllRoles")
+	
+	@RequestMapping("/getAllRolesName")
 	@ResponseBody
-	public JSONObject getAllRoles(){
-		List<Map<String,Object>> roles=roleService.getAllRoles();
+	public JSONObject getAllRolesName(){
+		List<Map<String,Object>> roles=roleService.getAllRolesName();
 		return CommonUtil.constructHtmlResponse(1, "ok", roles);
 	}
+	
+	
+	
+	
+	
+	
+	
 }

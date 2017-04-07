@@ -1,5 +1,8 @@
 package com.air_condition.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.air_condition.domain.Limit;
 
 public interface LimitMapper {
@@ -14,4 +17,7 @@ public interface LimitMapper {
     int updateByPrimaryKeySelective(Limit record);
 
     int updateByPrimaryKey(Limit record);
+    
+    List<Map<String,Object>> getAllLimits();
+	
 }

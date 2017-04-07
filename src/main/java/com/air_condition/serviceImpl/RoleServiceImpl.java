@@ -16,9 +16,9 @@ public class RoleServiceImpl implements RoleServiceI {
 	@Autowired
 	private RoleMapper roleDao;
 
-	public List<Map<String, Object>> getAllRoles() {
+	public List<Map<String, Object>> getAllRolesName() {
 		// TODO Auto-generated method stub
-		return roleDao.getAllRoles();
+		return roleDao.getAllRolesName();
 	}
 
 }
