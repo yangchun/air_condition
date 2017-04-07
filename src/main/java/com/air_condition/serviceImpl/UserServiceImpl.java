@@ -22,7 +22,6 @@ public class UserServiceImpl implements UserServiceI {
 	}
 
 
-	@Override
 	public List<Map<String, Object>> getAllUser() {
 		// TODO Auto-generated method stub
 		return userMapper.getAllUser();
