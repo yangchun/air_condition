@@ -1,7 +1,7 @@
 package com.air_condition.dao;
 
 import com.air_condition.domain.Role;
-
+import java.util.*;
 public interface RoleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +14,6 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+    
+    public List<Map<String,Object>> getAllRoles();
 }

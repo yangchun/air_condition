@@ -8,5 +8,6 @@ import com.air_condition.domain.User;
 public interface UserServiceI {
 	public User selectByPrimaryKey(int id);
 	public List<Map<String,Object>> getAllUser();
-	
+	public User isLogin(String username,String password);
+	public int addNewUser(User u);
 }

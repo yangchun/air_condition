@@ -27,4 +27,16 @@ public class UserServiceImpl implements UserServiceI {
 		return userMapper.getAllUser();
 	}
 
+
+	public User isLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		return userMapper.isLogin(username, password);
+	}
+
+
+	public int addNewUser(User u) {
+		// TODO Auto-generated method stub
+		return userMapper.insert(u);
+	}
+
 }

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+import javax.servlet.http.HttpSession;
+
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,36 @@ public class UserController {
 	public JSONObject getAllUser(HttpServletRequest request,HttpServletResponse response){
 		List<Map<String,Object>> users=userService.getAllUser();
 		return CommonUtil.constructHtmlResponse(1, "ok", users);
+	}
+	
+	@RequestMapping("/login")
+	@ResponseBody
+	public JSONObject login(HttpSession session,String username,String password){
+		User u=userService.isLogin(username, password);
+		if(u!=null){
+			session.setAttribute("user", u);
+			return CommonUtil.constructHtmlResponse(1, "ok", null);
+		}
+		return CommonUtil.constructHtmlResponse(0, "fail", null);
+	}
+	
+	
+	
+	@RequestMapping("/addNewUser")
+	@ResponseBody
+	public JSONObject addNewUser(String username,String password,String realname,String email,Integer role_id){
+		User u=new User();
+		u.setUsername(username);
+		u.setPassword(password);
+		u.setRealname(realname);
+		u.setEmail(email);
+		u.setRoleId(role_id);
+		u.setState(1);
+		int n=userService.addNewUser(u);
+		if(n>0){
+			return CommonUtil.constructHtmlResponse(1, "ok", null);
+		}
+		return CommonUtil.constructHtmlResponse(0, "fail", null);
 	}
 	
 	

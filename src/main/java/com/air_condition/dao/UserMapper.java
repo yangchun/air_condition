@@ -17,4 +17,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
     
     List<Map<String,Object>> getAllUser();
+    
+    User isLogin(String username,String password);
 }
