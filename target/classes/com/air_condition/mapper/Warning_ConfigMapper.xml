@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.air_condition.dao.Warning_ConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.air_condition.domain.Warning_Config" >
+    <result column="eqid" property="eqid" jdbcType="INTEGER" />
+    <result column="warning_temp" property="warningTemp" jdbcType="BIGINT" />
+    <result column="warning_power" property="warningPower" jdbcType="BIGINT" />
+    <result column="inform_user" property="informUser" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.air_condition.domain.Warning_Config" >
+    insert into warning_config (eqid, warning_temp, warning_power, 
+      inform_user, state)
+    values (#{eqid,jdbcType=INTEGER}, #{warningTemp,jdbcType=BIGINT}, #{warningPower,jdbcType=BIGINT}, 
+      #{informUser,jdbcType=INTEGER}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.air_condition.domain.Warning_Config" >
+    insert into warning_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eqid != null" >
+        eqid,
+      </if>
+      <if test="warningTemp != null" >
+        warning_temp,
+      </if>
+      <if test="warningPower != null" >
+        warning_power,
+      </if>
+      <if test="informUser != null" >
+        inform_user,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eqid != null" >
+        #{eqid,jdbcType=INTEGER},
+      </if>
+      <if test="warningTemp != null" >
+        #{warningTemp,jdbcType=BIGINT},
+      </if>
+      <if test="warningPower != null" >
+        #{warningPower,jdbcType=BIGINT},
+      </if>
+      <if test="informUser != null" >
+        #{informUser,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

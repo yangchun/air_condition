@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSPINIA | Dashboard</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Toastr style -->
+    <link href="../css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <!-- Gritter -->
+    <link href="../js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <script src="../js/system_role_manage.js"></script>
+    <link href="../css/system_role_manage.css" rel="stylesheet">
+
+</head>
+
+<body>
+<div id="fullbg"></div>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="../img/profile_small.jpg" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">管理员</strong>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">设备管理</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="air_condition_control.html">空调控制</a></li>
+                        <li><a href="equipment_control.html">中央空调管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">数据分析</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="equipment_analyze.html">设备分析</a></li>
+                        <li><a href="equipment_contrast_analyze.html">对比分析</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><i class="fa fa-envelope"></i> <span class="nav-label">报警模块</span><span class="label label-warning pull-right">16/24</span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="warning_configuration.html">告警配置</a></li>
+                        <li><a href="warning_inform.html">事件通知</a></li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a><i class="fa fa-database"></i> <span class="nav-label">系统管理</span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="system_user_manage.html">系统用户管理</a></li>
+                        <li class="active"><a href="#">角色管理</a></li>
+                        <li><a href="system_limit_manage.html">权限管理</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <div style="width: 400px;height: 50px;margin-top:1.5%;margin-left: 25%;padding-top: 2%"><font size="+2" color="#006400">中央空调管理系统</font></div>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message"></span>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+                            <li>
+                                <div class="dropdown-messages-box">
+                                    <a href="profile.html" class="pull-left">
+                                        <img alt="image" class="img-circle" src="img/a7.jpg">
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="text-center link-block">
+                                    <a href="mailbox.html">
+                                        <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                    <li>
+                        <a class="right-sidebar-toggle">
+                            <i class="fa fa-tasks"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>系统角色管理</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <button onclick="addNewRole()" class="btn btn-primary">添加角色</button>
+                            <table class="table table-striped table-bordered table-hover " id="editable" >
+                                <thead>
+                                <tr>
+                                    <th>角色名称</th>
+                                    <th>角色描述</th>
+                                    <th>拥有权限</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="gradeX">
+                                    <td>系统管理员</td>
+                                    <td>管理整个系统</td>
+                                    <td>MR001,MR002,MR003</td>
+                                    <td>正常</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-xs">编辑</button>
+                                        <button type="button" class="btn btn-primary btn-xs">删除</button>
+                                    </td>
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>系统维护人员</td>
+                                    <td>维修各个功能组件</td>
+                                    <td>WX001,WX002</td>
+                                    <td>正常</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-xs">编辑</button>
+                                        <button type="button" class="btn btn-primary btn-xs">删除</button>
+                                    </td>
+                                </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--弹框-->
+        <div id="addNewRole">
+            <form>
+                <table>
+                    <tr>
+                        <td height="35px"><font size="+1">角色名称：</font></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
+                    </tr>
+                    <tr>
+                        <td height="35px"><font size="+1">角色描述：</font></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
+                    </tr>
+                    <tr>
+                        <td height="35px"><font size="+1">拥有权限：</font></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" /></td>
+                    </tr>
+                    <tr>
+                        <td height="35px"><font size="+1">状态：</font></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" /></td>
+                    </tr>
+                </table>
+            </form>
+            <div id="newRole_button">
+                <button type="button" class="btn btn-primary btn-sm" onclick="closeNewRole()">确定</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="closeNewRole()">取消</button>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    <!-- Mainly scripts -->
+    <script src="../js/jquery-2.1.1.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- Flot -->
+    <script src="../js/plugins/flot/jquery.flot.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.pie.js"></script>
+    <!-- Peity -->
+    <script src="../js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="../js/demo/peity-demo.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+</body>
+</html>

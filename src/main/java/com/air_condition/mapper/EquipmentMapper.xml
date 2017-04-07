@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.air_condition.dao.EquipmentMapper" >
+  <resultMap id="BaseResultMap" type="com.air_condition.domain.Equipment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="eqname" property="eqname" jdbcType="VARCHAR" />
+    <result column="eqtype" property="eqtype" jdbcType="VARCHAR" />
+    <result column="eqbuytime" property="eqbuytime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, eqname, eqtype, eqbuytime, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from equipment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from equipment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.air_condition.domain.Equipment" >
+    insert into equipment (id, eqname, eqtype, 
+      eqbuytime, state)
+    values (#{id,jdbcType=INTEGER}, #{eqname,jdbcType=VARCHAR}, #{eqtype,jdbcType=VARCHAR}, 
+      #{eqbuytime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.air_condition.domain.Equipment" >
+    insert into equipment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="eqname != null" >
+        eqname,
+      </if>
+      <if test="eqtype != null" >
+        eqtype,
+      </if>
+      <if test="eqbuytime != null" >
+        eqbuytime,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="eqname != null" >
+        #{eqname,jdbcType=VARCHAR},
+      </if>
+      <if test="eqtype != null" >
+        #{eqtype,jdbcType=VARCHAR},
+      </if>
+      <if test="eqbuytime != null" >
+        #{eqbuytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.air_condition.domain.Equipment" >
+    update equipment
+    <set >
+      <if test="eqname != null" >
+        eqname = #{eqname,jdbcType=VARCHAR},
+      </if>
+      <if test="eqtype != null" >
+        eqtype = #{eqtype,jdbcType=VARCHAR},
+      </if>
+      <if test="eqbuytime != null" >
+        eqbuytime = #{eqbuytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.air_condition.domain.Equipment" >
+    update equipment
+    set eqname = #{eqname,jdbcType=VARCHAR},
+      eqtype = #{eqtype,jdbcType=VARCHAR},
+      eqbuytime = #{eqbuytime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
