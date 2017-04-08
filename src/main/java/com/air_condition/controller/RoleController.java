@@ -29,6 +29,47 @@ public class RoleController {
 	}
 	
 	
+	@RequestMapping("/getAllRolesList")
+	@ResponseBody
+	public JSONObject getAllRolesList(){
+		List<Map<String,Object>> roles=roleService.getAllRolesList();
+		return CommonUtil.constructHtmlResponse(1, "ok", roles);
+	}
+	
+	
+	@RequestMapping("/delRoleById")
+	@ResponseBody
+	public JSONObject delRoleById(Integer roleid){
+		int n=roleService.delRoleById(roleid);
+		if(n>0){
+			return CommonUtil.constructHtmlResponse(1, "ok", null);
+		}
+		return CommonUtil.constructHtmlResponse(0, "fail", null);
+	}
+	
+	
+	@RequestMapping("/addNewRole")
+	@ResponseBody
+	public JSONObject addNewRole(String  rolename){
+		
+		
+		
+		return null;
+	}
+	
+	@RequestMapping("/updateRoleInfo")
+	@ResponseBody
+	public JSONObject updateRoleInfo(String  rolename){
+		
+		
+		
+		return null;
+	}
+	
+	
+	
+	
+	
 	
 	
 	

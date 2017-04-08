@@ -28,4 +28,10 @@
       </if>
     </trim>
   </insert>
+  <delete id="delRoleLimitByRoleId" parameterType="int">
+  	 delete from role_limit where roleid=#{0}
+  </delete>
+  
+  
+  
 </mapper>

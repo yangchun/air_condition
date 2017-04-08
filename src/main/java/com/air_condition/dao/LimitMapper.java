@@ -19,5 +19,9 @@ public interface LimitMapper {
     int updateByPrimaryKey(Limit record);
     
     List<Map<String,Object>> getAllLimits();
+    
+    List<Map<String,Object>> getLimitsByRoleId(int id);
+    
+    
 	
 }
