@@ -39,4 +39,16 @@ public class UserServiceImpl implements UserServiceI {
 		return userMapper.insert(u);
 	}
 
+
+	public int delUserById(int userid) {
+		// TODO Auto-generated method stub
+		return userMapper.deleteByPrimaryKey(userid);
+	}
+
+
+	public int updateUserInfo(User u) {
+		// TODO Auto-generated method stub
+		return userMapper.updateByPrimaryKeySelective(u);
+	}
+
 }

@@ -66,4 +66,34 @@ public class UserController {
 	}
 	
 	
+	@RequestMapping("/delUserById")
+	@ResponseBody
+	public JSONObject delUserById(Integer userid){
+		int n=userService.delUserById(userid);
+		if(n>0){
+			return CommonUtil.constructHtmlResponse(1, "ok", null);
+		}
+		return CommonUtil.constructHtmlResponse(0, "fail", null);
+	}
+	
+	
+	
+	@RequestMapping("/updateUserInfo")
+	@ResponseBody
+	public JSONObject updateUserInfo(Integer userid,String username,String password,String realname,String email,Integer role_id,Integer state){
+		User u=new User();
+		u.setId(userid);
+		u.setUsername(username);
+		u.setPassword(password);
+		u.setRealname(realname);
+		u.setEmail(email);
+		u.setRoleId(role_id);
+		u.setState(state);
+		int n=userService.updateUserInfo(u);
+		if(n>0){
+			return CommonUtil.constructHtmlResponse(1, "ok", null);
+		}
+		return CommonUtil.constructHtmlResponse(0, "fail", null);
+	}
+	
 }

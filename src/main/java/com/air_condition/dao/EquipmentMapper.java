@@ -1,7 +1,7 @@
 package com.air_condition.dao;
 
 import com.air_condition.domain.Equipment;
-
+import java.util.*;
 public interface EquipmentMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +14,6 @@ public interface EquipmentMapper {
     int updateByPrimaryKeySelective(Equipment record);
 
     int updateByPrimaryKey(Equipment record);
+    
+    List<Map<String,Object>> getAllEqs();
 }

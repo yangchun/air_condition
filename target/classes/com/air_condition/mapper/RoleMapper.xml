@@ -81,8 +81,12 @@
   </update>
   
   
-  <select id="getAllRoles" resultType="java.util.Map">
+  <select id="getAllRolesName" resultType="java.util.Map">
   	select id,rolename from role
+  </select>
+  
+   <select id="getAllRolesList" resultType="java.util.Map">
+  	select id,rolename,roledesc,state from role
   </select>
   
 </mapper>

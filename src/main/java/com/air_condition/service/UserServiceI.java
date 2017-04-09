@@ -10,4 +10,6 @@ public interface UserServiceI {
 	public List<Map<String,Object>> getAllUser();
 	public User isLogin(String username,String password);
 	public int addNewUser(User u);
+	public int delUserById(int userid);
+	public int updateUserInfo(User u);
 }

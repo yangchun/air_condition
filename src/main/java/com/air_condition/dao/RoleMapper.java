@@ -15,5 +15,7 @@ public interface RoleMapper {
 
     int updateByPrimaryKey(Role record);
     
-    public List<Map<String,Object>> getAllRoles();
+    public List<Map<String,Object>> getAllRolesName();
+    
+    public List<Map<String,Object>> getAllRolesList();
 }

@@ -14,4 +14,6 @@ public interface Equipment_RepairMapper {
     int updateByPrimaryKeySelective(Equipment_Repair record);
 
     int updateByPrimaryKey(Equipment_Repair record);
+    
+    int delEq_RepairByEqId(int eqid);
 }

@@ -90,4 +90,14 @@
       state = #{state,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="getAllLimits" resultType="java.util.Map">
+  		select id,limitcode,limitdesc,state from air_condition.`limit`
+  </select>
+  
+   <select id="getLimitsByRoleId" resultType="java.util.Map">
+  		select id,limitcode from air_condition.`limit` where id in (select limitid from role_limit where roleid=#{0})
+  </select>
+  
+  
 </mapper>
