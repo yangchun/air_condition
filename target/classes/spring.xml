@@ -10,4 +10,36 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd
 	<!-- 自动扫描(自动注入) -->
 	<context:component-scan base-package="com.air_condition.serviceImpl" />
 
+
+
+	<bean id="DailyTaskQtzJob" class="com.util.SpringQtz"></bean>
+	<bean id="DailyTaskQtzJobMethod1"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="DailyTaskQtzJob" />
+		</property>
+		<property name="targetMethod">  <!-- 要执行的方法名称 -->
+			<value>updateUnConfirmOrder</value>
+		</property>
+	</bean>
+	
+	<!-- ======================== 调度触发器 ======================== -->
+	<bean id="DailyTaskCronTriggerBean"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="DailyTaskQtzJobMethod1"></property>
+		<!-- 每天隔1分钟触发, -->
+		<property name="cronExpression" value="0 0/1 * * * ?"></property>
+	</bean>
+	<!-- ======================== 调度工厂 ======================== -->
+	<bean id="SpringJobSchedulerFactoryBean"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="DailyTaskCronTriggerBean" />
+			</list>
+		</property>
+	</bean>
+	
+	
+	
 </beans>

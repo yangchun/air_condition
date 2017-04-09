@@ -119,7 +119,7 @@
 
 
 	<select id="getAllUser" resultType="java.util.Map">
-		select username,realname,email,`user`.state,rolename from user LEFT JOIN
+		select id,username,password,realname,email,`user`.state,rolename from user LEFT JOIN
 		role on role_id=role.id
 	</select>
 

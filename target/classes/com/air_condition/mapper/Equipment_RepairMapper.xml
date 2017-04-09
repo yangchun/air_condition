@@ -90,4 +90,8 @@
       desc = #{desc,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <delete id="delEq_RepairByEqId">
+  	delete from equipment_repair where eqid=#{0}
+  </delete>
+  
 </mapper>
