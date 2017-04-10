@@ -7,30 +7,33 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.air_condition.dao.EquipmentMapper;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @description 定时器任�?,每隔�?分钟执行�?�?,查找order_state=1的订�?,order_creat_time
- * @author gr
+ * @description 
+ * @author 
  *
  */
 public class SpringQtz {
+	@Autowired
+	private DataUtil dataUtil;
+	
+	//产生随机警告事件
+	protected void produceEvent_Inform() {
+		dataUtil.produceEvent_Inform();
+	}
+	
+	//产生设备运行数据
+	protected void produceEqData(){
+		dataUtil.produceEqData();
+	}
 	
 
-	//课程添加
-	protected void execute() {
-		System.out.println("45分钟�?始关闭订�?....");
-	}
-	
-	
-	
-	//修改未确认的订单
-	public void updateUnConfirmOrder(){
-	System.out.println("-------------");
-	}
 	
 	
 }

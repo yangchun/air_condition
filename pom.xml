@@ -134,7 +134,9 @@
 				<version>6.1.10</version>
 				<configuration>
 					<argLine>-Dfile.encoding=UTF-8</argLine>
-					<contextPath>/</contextPath>
+					<webAppConfig>
+						<contextPath>/</contextPath>
+					</webAppConfig>
 					<scanIntervalSeconds>4</scanIntervalSeconds>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
