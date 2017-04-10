@@ -67,4 +67,10 @@
       </if>
     </trim>
   </insert>
+  
+  <select id="getAllEqData" resultType="java.util.Map">
+  	select eqname,eqparm,eqvalue,eqstate from equipment_data ORDER BY equipment_data.recordtime DESC  LIMIT #{0},#{1} 
+  </select>
+  
+  
 </mapper>
