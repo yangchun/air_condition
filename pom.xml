@@ -136,6 +136,7 @@
 					<argLine>-Dfile.encoding=UTF-8</argLine>
 					<webAppConfig>
 						<contextPath>/</contextPath>
+						<defaultsDescriptor>src/main/resources/webdefault.xml</defaultsDescriptor>
 					</webAppConfig>
 					<scanIntervalSeconds>4</scanIntervalSeconds>
 					<connectors>
