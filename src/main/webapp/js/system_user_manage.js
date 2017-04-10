@@ -5,7 +5,7 @@ window.onload = function(){
 		success:function back(item){
 			addData(item);
 		},
-		error:function back(data){
+		error:function back(){
 			alert("系统提示：获取信息失败");
 		}
 		
@@ -23,7 +23,7 @@ function addData(data){
 			}else{
 				list[i].state = "禁用";
 			}
-			str+="<tr class='gradex'><td>"+list[i].username+"</td><td>"+list[i].rolename+"</td><td>"+list[i].realname+
+			str+="<tr class='gradex'><td class='hidinfo'>"+list[i].id+"</td><td>"+list[i].username+"</td><td class='hidinfo'>"+list[i].password+"</td><td>"+list[i].rolename+"</td><td>"+list[i].realname+
 			"</td><td>"+list[i].email+"</td><td>"+list[i].state+"</td><td>"+
 			"<button type='button' class='btn btn-xs btn-primary' onclick='adjust()'>编辑</button> "+
 			"<button type='button' class='btn btn-xs btn-primary' onclick='deluser(this)'>删除</button>"+
@@ -65,6 +65,31 @@ function addNewUser() {
         display:"block"
     });
     $("#addNewUser").show();
+    
+  //添加角色接口
+  $.ajax({
+	  url:"../role/getAllRolesName",
+	  type:"POST",
+	  success:function(data){
+		 addra(data);
+		  
+	  },
+  	  error:function(){
+  		  alert("获取信息失败！");
+  	  }
+  });
+  
+  function addra(data){
+	  var r = JSON.parse(data);
+	  var rolist=r.data,
+	  len=rolist.length,
+	  rol;
+	  for(var i=0;i<len;i++){
+		  rol+="<option id='"+rolist[i].id+"'>"+rolist[i].rolename+"</option>";
+	  }
+	  $("#addNewUser").find("select").append(rol);
+  }
+  
 }
 function closeNewUser() {
     $("#fullbg,#addNewUser").hide();
@@ -72,7 +97,8 @@ function closeNewUser() {
 }
 function closeNewUser() {
     $("#fullbg,#addNewUser").hide();
-   }
+}
+
 
 //添加新用户信息
 function addUserInfo(){
@@ -95,7 +121,7 @@ function addUserInfo(){
 	
 	//在页面上添加新用户
 	var html = "<tr><td>"+json.username+"</td><td>"+json.rolename+"</td><td>"+
-		json.realname+"</td><td>"+json.email+"</td><td>"+json.state+"</td><td>"+
+		json.realname+"</td><td>"+json.email+"</td><td>"+"正常"+"</td><td>"+
 		"<button type='button' class='btn btn-primary btn-xs' onclick='adjust()'>编辑</button> "+
 	    "<button type='button' class='btn btn-primary btn-xs' onclick='deluser(this)'>删除</button> "+
 		"</td></tr>";
@@ -105,11 +131,11 @@ function addUserInfo(){
 	var datas = JSON.stringify(json);
 	$.ajax({
 		type:"POST",
-		url:"../user/getAllUser",
+		url:"../user/addNewUser",
 		data:datas,
 		dataType:"json",
 		sucess:function back(data){
-			alert(data.code);
+			alert(data);
 		},
 		error:function back(data){
 			alert(data.code);
