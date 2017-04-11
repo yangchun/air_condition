@@ -1,3 +1,10 @@
+//页面初始化
+
+
+
+
+
+//添加新角色
 function addNewLimit() {
     var bh = $("body").height();
     var bw = $("body").width();

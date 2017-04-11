@@ -101,12 +101,12 @@ function closeNewUser() {
 
 //添加新用户信息
 function addUserInfo(){
-	var el = $("#addNewUser").find("input[type='text']"),
+	var el = $("#addNewUser").find("input"),
 		sel = $("#addNewUser").find("select option:selected"),
 		arr1 = new Array(),
 		arr2 = new Array();
 	var json={
-		id:sel.attr("id")
+		role_id:sel.attr("id")
 	};
 	$.each(el,function(){
 		var s = $(this);
@@ -123,36 +123,52 @@ function addUserInfo(){
 	}
 	 
 	//传添加的新用户信息给后台（数据格式为json）	
-	var datas = JSON.stringify(json);
-	alert(datas);
 	$.ajax({
 		type:"POST",
 		url:"../user/addNewUser",
-		data:datas,
+		data:json,
 		dataType:"json",
 		sucess:function back(data){
-			alert(data);
+			alert("添加用户成功！");
 		},
 		error:function back(){
 			alert("添加用户失败!");
 		}
 	});
 	//在页面上添加新用户
-	var html = "<tr><td class='hidinfo'>"+json.id+"</td><td>"+json.username+"</td><td class='hidinfo'>"+json.password+"</td><td>"
-		+sel.val()+"</td><td>"+
-		json.realname+"</td><td>"+json.email+"</td><td>"+"正常"+"</td><td>"+
+	
+	var html = "<tr><td>"+json.username+"</td><td class='hidinfo'>"+json.password+"</td><td>"
+		+sel.val()+"</td><td>"+json.realname+"</td><td>"+json.email+"</td><td>"+"正常"+"</td><td>"+
 		"<button type='button' class='btn btn-primary btn-xs' onclick='adjust(),addrol(this)'>编辑</button> "+
 	    "<button type='button' class='btn btn-primary btn-xs' onclick='deluser(this)'>删除</button> "+
 		"</td></tr>";
 	$("#editable").find("tbody").append(html);
-		
+	alert("添加用户信息成功！");	
 	
 }
 
 
 //删除用户
 function deluser(btn){
-	$(btn).parents("tr").remove();
+	var tr = $(btn).parent().parent();
+	alert(tr.find("td:eq(0)").text());
+	$.ajax({
+		url:"../user/delUserById",
+		type:"GET",
+		data:{userid:tr.find("td:eq(0)").text()},
+		dataType:'json',
+		success:function(data){
+			var msg = "您真的要删除该用户吗？";
+			if(confirm(msg)==true){
+				tr.remove();
+			}
+		},
+		error:function(){
+			alert("删除用户失败！");
+		}
+	})
+	
+	
 }
 
 //添加角色接口
@@ -175,20 +191,65 @@ function addrol(btn){
 		}
 	});
 	//点击编辑用户信息时，弹出窗口显示当前用户信息
-	var inp = $("dialog").find("input"),arr = new Array();
-	var td=$(btn).parent().parent().find("td:lt(7)");
-	//$.each(td,function(){
-		arr.push(td.text());
-	//});
+	var inp = $("#dialog").find("input"),arr = new Array();
+	var td = $(btn).parent().parent().find("td");
+	var tdl=td.length;
+	for(var n=0;n<tdl-2;n++){
+		if(n>2){
+			var str1 = td.eq(n+1).text();
+			inp.eq(n).val(str1);
+		}else{
+			var str2 = td.eq(n).text()
+			inp.eq(n).val(str2);
+		};	
+	}
+	var str = td.eq(3).text();
+	switch(str){
+		case "系统管理人员":
+			$("#dialog").find("select option[id='1']").attr("selected",true);break;
+		case "系统维护人员":
+			$("#dialog").find("select option[id='2']").attr("selected",true);break;
+		case "客户管理员":
+			$("#dialog").find("select option[id='3']").attr("selected",true);break;
+		case "客户用户":
+			$("#dialog").find("select option[id='4']").attr("selected",true);break;
+	}
 	
 }
 
 //编辑用户信息
 function changedialog(){
-	
-	
-	
-	
+	var inval = $("#dialog").find("input"),
+	arr1 = new Array(),arr2 = new Array(),
+	json={
+		role_id:$("#dialog").find("select option:selected").attr("id")
+	};
+	$.each(inval,function(){
+		var s=$(this);
+		arr1.push(s.attr("name"));
+		arr2.push(s.val());
+	});
+	for(var i=0;i<arr1.length;i++){
+		if(arr2[i]=="正常"){
+			arr2[i]=1;
+		}else if(arr2[i]=="禁用"){
+			arr2[i]=0;
+		}
+		json[arr1[i]] = arr2[i];
+	}
+	//将修改的用户信息封装成json传给后台
+	$.ajax({//出错
+		url:"../user/updateUserInfo",
+		type:"POST",
+		data:json,
+		dataType:"json",
+		success:function back(data){
+			var r = JSON.parse(data);
+		},
+		error:function back(){
+			alert("修改信息失败!");
+		}
+	})
 }
 
 
