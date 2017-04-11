@@ -41,11 +41,12 @@ function initRoomData(item){
 }
 
 function dealInform(br,id){
+	var tr=$(br).parent().parent();
 		$.ajax({
 			type:"POST",
 			url:"../eventinform/dealEventInform?id="+id,
 			success: function back(data){
-				alert($(br).children('td').eq(1).text());
+				$(tr).children('td').eq(4).text("已处理");
 		    },
 		    error: function back(data){
 		    	alert("系统提示");
