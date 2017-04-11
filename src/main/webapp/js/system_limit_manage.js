@@ -28,7 +28,7 @@ function addData(lidata){
 		+lilist[i].limitdesc+"</td><td>"
 		+lilist[i].state+"</td><td>"
 		+"<button type='button' class='btn btn-xs btn-primary' onclick='popchlimit(this)'>编辑</button> "
-		+"<button type='button' class='btn btn-xs btn-primary'>删除</button>"
+		+"<button type='button' class='btn btn-xs btn-primary' onclick='delLimit(this)'>删除</button>"
 		+"</td></tr>";
 	}
 	$("#editable").find("tbody").append(str);
@@ -70,11 +70,10 @@ function addlimitinfo(){
 			str+="<tr><td>"+json1.limitcode+"</td><td>"
 				+json1.limitdesc+"</td><td>"+"正常"+"</td><td>"
 				+"<button class='btn btn-xs btn-primary' type='button' onclick='popchlimit(this)'>编辑</button> "
-				+"<button class='btn btn-xs btn-primary' type='button'>删除</button>"
+				+"<button class='btn btn-xs btn-primary' type='button' onclick='delLimit(this)'>删除</button>"
 				+"</td></tr>";
 			$("#editable").find("tbody").append(str);
 			alert("添加权限成功！");
-			var r = JSON.parse(data);
 			
 		},
 		error:function back(){
@@ -121,7 +120,6 @@ function chlimitinfo(){
 		"limitdesc":$("#changeLimit").find("input[name='limitdesc']").val(),
 		"state":str
 	}
-	alert(JSON.stringify(json2));
 	$.ajax({
 		
 		url:"../limit/updateLimitInfo",
@@ -129,27 +127,28 @@ function chlimitinfo(){
 		data:json2,
 		dataType:"json",
 		success:function back(data){
-			/*var r = JSON.parse(data);
 			//var tdl = $("#editable").find("tbody tr:eq(0) td").length;
 			var tr = $("#editable").find("tbody>tr");
 			var trl = tr.length;
 			for(var j=0;j<trl;j++){
-				var td0=tr.eq(j).find("td:eq(0)");
-				if(td0==json.id){
-						if(json.state==1){
-							json.state="正常";
+				var td=tr.eq(j).find("td:eq(0)");
+				var td0 = td.text();
+				if(td0==json2.id){
+						if(json2.state==1){
+							json2.state="正常";
 						}else{
-							json.state = "禁用";
+							json2.state = "禁用";
 						}
 					//for(var m=0;m<tdl-1;m++){
-						tr.eq(j).find("td").eq(0).text(json.id);
-						tr.eq(j).find("td").eq(1).text(json.limitcode);
-						tr.eq(j).find("td").eq(2).text(json.limitdesc);
-						tr.eq(j).find("td").eq(3).text(json.state);
+						tr.eq(j).find("td").eq(0).text(json2.id);
+						tr.eq(j).find("td").eq(1).text(json2.limitcode);
+						tr.eq(j).find("td").eq(2).text(json2.limitdesc);
+						tr.eq(j).find("td").eq(3).text(json2.state);
+						alert("修改权限成功");
 						
 					//}
 				}
-			}*/
+			}
 		},
 		error:function(){
 			alert("修改权限失败！");
@@ -160,8 +159,27 @@ function chlimitinfo(){
 
 //删除权限
 function delLimit(btn){
-	var tr = $(btn).parent().parent
-	tr.remove();
+	var tr = $(btn).parent().parent();
+	var json={
+			"id":tr.find("td:eq(0)").text()
+	};
+	$.ajax({
+		url:"../limit/delLimitById",
+		type:"POST",
+		data:json,
+		dataType:"json",
+		success:function back(data){
+			var msg = "您真的要删除该权限吗？";
+			if(confirm(msg)==true){
+				tr.remove();
+			}
+		},
+		error:function(){
+			alert("删除权限失败");
+		}
+	})
+	
+	
 }
 
 

@@ -13,7 +13,7 @@
     <link href="../css/animate.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
-    <script src="../js/system_role_manage.js"></script>
+    
     <link href="../css/system_role_manage.css" rel="stylesheet">
 
 </head>
@@ -138,28 +138,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="gradeX">
-                                    <td>系统管理员</td>
-                                    <td>管理整个系统</td>
-                                    <td>MR001,MR002,MR003</td>
-                                    <td>正常</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs">编辑</button>
-                                        <button type="button" class="btn btn-primary btn-xs">删除</button>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>系统维护人员</td>
-                                    <td>维修各个功能组件</td>
-                                    <td>WX001,WX002</td>
-                                    <td>正常</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs">编辑</button>
-                                        <button type="button" class="btn btn-primary btn-xs">删除</button>
-                                    </td>
-                                </tr>
-
-
 
                                 </tbody>
                             </table>
@@ -171,9 +149,13 @@
 
 
         <!--弹框-->
-        <div id="addNewRole">
+        <div id="changeRole">
             <form>
                 <table>
+                	<tr class="">
+                        <td height="35px"><font size="+1">角色ID：</font></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
+                    </tr>
                     <tr>
                         <td height="35px"><font size="+1">角色名称：</font></td>
                         <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
@@ -184,7 +166,9 @@
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">拥有权限：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" /></td>
+                        <td height="35px">
+                        	
+                        </td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">状态：</font></td>
@@ -192,9 +176,9 @@
                     </tr>
                 </table>
             </form>
-            <div id="newRole_button">
-                <button type="button" class="btn btn-primary btn-sm" onclick="closeNewRole()">确定</button>
-                <button type="button" class="btn btn-primary btn-sm" onclick="closeNewRole()">取消</button>
+            <div id="changeRole_button">
+                <button type="button" class="btn btn-primary btn-sm" onclick="closechRole()">确定</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="closechRole()">取消</button>
             </div>
         </div>
 
@@ -222,6 +206,7 @@
     <script src="../js/demo/peity-demo.js"></script>
     <!-- Custom and plugin javascript -->
     <script src="../js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="../js/plugins/pace/pace.min.js"></script>
+    <script src="../js/system_role_manage.js"></script>
 </body>
 </html>

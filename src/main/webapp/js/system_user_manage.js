@@ -128,22 +128,25 @@ function addUserInfo(){
 		url:"../user/addNewUser",
 		data:json,
 		dataType:"json",
-		sucess:function back(data){
-			alert("添加用户成功！");
+		success:function back(data){
+			//var ss=$("#addNewUser").find("select option:selected");
+			//在页面上添加新用户
+			var html;
+			html= "<tr><td>"+json.username+"</td><td class='hidinfo'>"+json.password+"</td><td>"
+			+sel.val()+"</td><td>"+json.realname+"</td><td>"+json.email+"</td><td>"+"正常"+"</td><td>"+
+			"<button type='button' class='btn btn-primary btn-xs' onclick='adjust(),addrol(this)'>编辑</button> "+
+		    "<button type='button' class='btn btn-primary btn-xs' onclick='deluser(this)'>删除</button> "+
+			"</td></tr>";
+			$("#editable").find("tbody").append(html);
+			alert("添加用户信息成功！");
 		},
 		error:function back(){
 			alert("添加用户失败!");
 		}
 	});
-	//在页面上添加新用户
 	
-	var html = "<tr><td>"+json.username+"</td><td class='hidinfo'>"+json.password+"</td><td>"
-		+sel.val()+"</td><td>"+json.realname+"</td><td>"+json.email+"</td><td>"+"正常"+"</td><td>"+
-		"<button type='button' class='btn btn-primary btn-xs' onclick='adjust(),addrol(this)'>编辑</button> "+
-	    "<button type='button' class='btn btn-primary btn-xs' onclick='deluser(this)'>删除</button> "+
-		"</td></tr>";
-	$("#editable").find("tbody").append(html);
-	alert("添加用户信息成功！");	
+	
+		
 	
 }
 
@@ -151,7 +154,6 @@ function addUserInfo(){
 //删除用户
 function deluser(btn){
 	var tr = $(btn).parent().parent();
-	alert(tr.find("td:eq(0)").text());
 	$.ajax({
 		url:"../user/delUserById",
 		type:"GET",
@@ -161,6 +163,8 @@ function deluser(btn){
 			var msg = "您真的要删除该用户吗？";
 			if(confirm(msg)==true){
 				tr.remove();
+			}else{
+				return false;//有bug
 			}
 		},
 		error:function(){
@@ -244,8 +248,40 @@ function changedialog(add){
 		data:json,
 		dataType:"json",
 		success:function back(data){
-			var r = JSON.parse(data);
-			alert(r.code);
+			var tr = $("#editable").find("tbody>tr");
+			var trl = tr.length;
+			for(var j=0;j<trl;j++){
+				var td=tr.eq(j).find("td:eq(0)");
+				var td0 = td.text();
+				if(td0==json.userid){
+						if(json.state==1){
+							json.state="正常";
+						}else{
+							json.state = "禁用";
+						}
+					//for(var m=0;m<tdl-1;m++){
+						tr.eq(j).find("td").eq(0).text(json.userid);
+						tr.eq(j).find("td").eq(1).text(json.username);
+						tr.eq(j).find("td").eq(2).text(json.password);
+						tr.eq(j).find("td").eq(4).text(json.realname);
+						tr.eq(j).find("td").eq(5).text(json.email);
+						tr.eq(j).find("td").eq(6).text(json.state);
+						var str = json.role_id;
+						switch(str){
+							case "1":
+								tr.eq(j).find("td").eq(3).text("系统管理员");break;
+							case "2":
+								tr.eq(j).find("td").eq(3).text("系统维护人员");break;
+							case "3":
+								tr.eq(j).find("td").eq(3).text("客户管理员");break;
+							case "4":
+								tr.eq(j).find("td").eq(3).text("客户用户");break;
+						}
+						alert("修改信息成功");
+						
+					//}
+				}
+			}
 		},
 		error:function back(){
 			alert("修改信息失败!");

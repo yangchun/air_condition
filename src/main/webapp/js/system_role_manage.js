@@ -1,4 +1,25 @@
-function addNewRole() {
+//页面初始化
+$(function(){
+	$.ajax({
+		url:"../role/getAllRolesList",
+		type:"post",
+		success:function back(data){
+			addrolelist(data);
+		},
+		error:function(){
+			alert("加载信息失败!");
+		}
+	})
+});
+
+function addrolelist(data){
+	var r = JSON.parse(data);
+	 
+	
+	
+}
+//弹出添加新角色窗口
+function popchRole() {
     var bh = $("body").height();
     var bw = $("body").width();
     $("#fullbg").css({
@@ -6,10 +27,10 @@ function addNewRole() {
         width:bw,
         display:"block"
     });
-    $("#addNewRole").show();
+    $("#changeRole").show();
 }
-function closeNewRole() {
-    $("#fullbg,#addNewRole").hide();
+function closechRole() {
+    $("#fullbg,#changeRole").hide();
 }
 
 

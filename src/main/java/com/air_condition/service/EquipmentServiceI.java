@@ -8,7 +8,7 @@ public interface EquipmentServiceI {
 	public int addNewEq(Equipment eq);
 	public int updateEqInfo(Equipment eq);
 	public int delEqById(int eqid);
-	
+	Map<String,Object> getEqInfoByEqId(int eqid);
 	
 
 }

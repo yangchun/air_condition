@@ -9,6 +9,6 @@ public interface RoomServiceI {
 	public int updateRoomInfo(Room room);
 	public int delRoomById(int room_num);
 	public int closeRoom(Room room);
-	
+	Map<String,Object> getGetRoomInfoById(Integer room_num);	
 
 }

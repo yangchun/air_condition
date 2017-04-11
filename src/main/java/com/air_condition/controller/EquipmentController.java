@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.air_condition.domain.Equipment;
 import com.air_condition.service.EquipmentServiceI;
-import com.air_condition.service.RoleServiceI;
 import com.util.CommonUtil;
 
 import java.util.*;
@@ -46,7 +45,7 @@ public class EquipmentController {
 	
 	
 	
-	@RequestMapping("/addNewEq")
+	@RequestMapping("/delEqById")
 	@ResponseBody
 	public JSONObject delEqById(int eqid){
 		int n=equipmentService.delEqById(eqid);
@@ -56,7 +55,7 @@ public class EquipmentController {
 		return CommonUtil.constructHtmlResponse(0, "fail", null);
 	}
 	
-	@RequestMapping("/addNewEq")
+	@RequestMapping("/updateEqInfo")
 	@ResponseBody
 	public JSONObject updateEqInfo(String eqname,String eqtype,String eqbuytime){
 		Equipment eq=new Equipment();
@@ -70,5 +69,15 @@ public class EquipmentController {
 		}
 		return CommonUtil.constructHtmlResponse(0, "fail", null);
 	} 
+	
+	@RequestMapping("/getEqInfoByEqId")
+	@ResponseBody
+	public JSONObject getEqInfoByEqId(int eqid){
+		Map<String,Object> eqinfo=equipmentService.getEqInfoByEqId(eqid);
+		if(eqinfo!=null){
+			return CommonUtil.constructHtmlResponse(1, "ok", eqinfo);
+		}
+		return CommonUtil.constructHtmlResponse(0, "fail", null);
+	}
  	
 }

@@ -14,21 +14,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from limit
+    from air_condition.`limit`
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from limit
+    delete from air_condition.`limit`
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.air_condition.domain.Limit" >
-    insert into limit (id, limitname, limitcode, 
+    insert into air_condition.`limit` (id, limitname, limitcode, 
       limitdesc, state)
     values (#{id,jdbcType=INTEGER}, #{limitname,jdbcType=VARCHAR}, #{limitcode,jdbcType=VARCHAR}, 
       #{limitdesc,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.air_condition.domain.Limit" >
-    insert into limit
+    insert into air_condition.`limit`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -65,7 +65,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.air_condition.domain.Limit" >
-    update limit
+    update air_condition.`limit`
     <set >
       <if test="limitname != null" >
         limitname = #{limitname,jdbcType=VARCHAR},
@@ -83,7 +83,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.air_condition.domain.Limit" >
-    update limit
+    update air_condition.`limit`
     set limitname = #{limitname,jdbcType=VARCHAR},
       limitcode = #{limitcode,jdbcType=VARCHAR},
       limitdesc = #{limitdesc,jdbcType=VARCHAR},
