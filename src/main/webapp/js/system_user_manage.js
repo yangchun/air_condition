@@ -31,7 +31,7 @@ function addData(data){
 			"</td></tr>";
 	}	
 	var table = $("#editable");
-	table.find("tbody").append(str);
+	table.find("tbody").append(str);                                                                                                                                                                                                                                                    
 	table.find("tbody>tr").each(function(){
 		$(this).find("td:eq(4)").text()=="禁用"?
 				$(this).find("td:eq(4)").css("color","red")
@@ -129,10 +129,11 @@ function addUserInfo(){
 		data:json,
 		dataType:"json",
 		success:function back(data){
-			//var ss=$("#addNewUser").find("select option:selected");
 			//在页面上添加新用户
+			var r=JSON.parse(data);
+			var userid = r.data;
 			var html;
-			html= "<tr><td>"+json.username+"</td><td class='hidinfo'>"+json.password+"</td><td>"
+			html= "<tr><td class='hidinfo'>"+userid.id+"</td><td>"+json.username+"</td><td class='hidinfo'>"+json.password+"</td><td>"
 			+sel.val()+"</td><td>"+json.realname+"</td><td>"+json.email+"</td><td>"+"正常"+"</td><td>"+
 			"<button type='button' class='btn btn-primary btn-xs' onclick='adjust(),addrol(this)'>编辑</button> "+
 		    "<button type='button' class='btn btn-primary btn-xs' onclick='deluser(this)'>删除</button> "+
@@ -143,34 +144,31 @@ function addUserInfo(){
 		error:function back(){
 			alert("添加用户失败!");
 		}
-	});
-	
-	
-		
-	
+	});	
 }
 
 
 //删除用户
 function deluser(btn){
 	var tr = $(btn).parent().parent();
-	$.ajax({
-		url:"../user/delUserById",
-		type:"GET",
-		data:{userid:tr.find("td:eq(0)").text()},
-		dataType:'json',
-		success:function(data){
-			var msg = "您真的要删除该用户吗？";
-			if(confirm(msg)==true){
+	alert(tr.find("td:eq(0)").text());
+	var msg = "您真的要删除该用户吗？";
+	if(confirm(msg)==true){
+		$.ajax({
+			url:"../user/delUserById",
+			type:"GET",
+			data:{userid:tr.find("td:eq(0)").text()},
+			dataType:'json',
+			success:function(data){
 				tr.remove();
-			}else{
-				return false;//有bug
+			},
+			error:function(){
+				alert("删除用户失败！");
 			}
-		},
-		error:function(){
-			alert("删除用户失败！");
-		}
-	})
+		});
+	}else{
+		return false;//有bug
+	}
 	
 	
 }

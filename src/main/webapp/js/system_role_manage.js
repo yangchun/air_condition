@@ -14,7 +14,22 @@ $(function(){
 
 function addrolelist(data){
 	var r = JSON.parse(data);
-	 
+	var  role = r.data,str;
+	var len = role.length;
+	for(var i=0;i<len;i++){
+		var lim = role[i].limits,liml = lim.length,val;
+		for(var j=0;j<liml;j++){
+			val+=lim[j].limitcode+",";
+		}
+		val = val.substr(0,val.length-1);
+		if(role[i].state==1){
+			role[i].state="正常";
+		}else{
+			role[i].state = "禁用";
+		}
+		str+="<tr><td class='hid'>"+role[i].id+"</td><td>"+role[i].rolename+"</td><td>"
+			+role[i].roledesc+"</td><td>"+val+"</td><td>"+role[i].state+"</td><td>"
+	}
 	
 	
 }

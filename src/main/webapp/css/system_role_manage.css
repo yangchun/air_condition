@@ -39,4 +39,6 @@
 #changeRole button{
     margin-right: 3%;
 }
-
+.hid{
+	display:none;
+}
