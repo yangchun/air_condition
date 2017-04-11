@@ -48,5 +48,10 @@ public class EquipmentServiceImpl implements EquipmentServiceI {
 		return equipmentDao.updateByPrimaryKeySelective(eq);
 	}
 
+	public Map<String, Object> getEqInfoByEqId(int eqid) {
+		// TODO Auto-generated method stub
+		return equipmentDao.getEqInfoByEqId(eqid);
+	}
+
 
 }

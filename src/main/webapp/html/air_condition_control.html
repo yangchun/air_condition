@@ -12,10 +12,7 @@
     <link href="../js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
     <link href="../css/animate.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-
-    <script src="../js/air_condition_control.js"></script>
     <link href="../css/air_condition_control.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -213,103 +210,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="gradeX">
-                                    <td>001</td>
-                                    <td>32</td>
-                                    <td>10</td>
-                                    <td>热风</td>
-                                    <td>2</td>
-                                    <td>良好</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">调整</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>001</td>
-                                    <td>32</td>
-                                    <td>10</td>
-                                    <td>热风</td>
-                                    <td>2</td>
-                                    <td>良好</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">调整</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>001</td>
-                                    <td>32</td>
-                                    <td>10</td>
-                                    <td>热风</td>
-                                    <td>2</td>
-                                    <td>良好</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">调整</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
-
-                                <tr class="gradeX">
-                                    <td>001</td>
-                                    <td>32</td>
-                                    <td>10</td>
-                                    <td>热风</td>
-                                    <td>2</td>
-                                    <td>良好</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">调整</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>001</td>
-                                    <td>32</td>
-                                    <td>10</td>
-                                    <td>热风</td>
-                                    <td>2</td>
-                                    <td>良好</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">调整</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>001</td>
-                                    <td>32</td>
-                                    <td>10</td>
-                                    <td>热风</td>
-                                    <td>2</td>
-                                    <td>良好</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">调整</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>001</td>
-                                    <td>32</td>
-                                    <td>10</td>
-                                    <td>热风</td>
-                                    <td>2</td>
-                                    <td>良好</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">调整</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>001</td>
-                                    <td>32</td>
-                                    <td>10</td>
-                                    <td>热风</td>
-                                    <td>2</td>
-                                    <td>良好</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">调整</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
+                                
                                 </tbody>
                             </table>
                         </div>
@@ -325,34 +226,34 @@
         <div id="dialog">
             <form>
                 <table>
-                    <tr>
-                        <td height="35px"><font size="+1">房间号：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" value="001"/></td>
-                    </tr>
+                    <input style="height: 25px" class="form-control" type="hidden" id="updateRoomNum" />
                     <tr>
                         <td height="35px"><font size="+1">温度：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" value="32"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="updateRoomTemp" /></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">湿度：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" value="10"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="updateRoomHumidity" /></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">模式：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" value="热风"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="updateRoomType" /></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">风速：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" value="2"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="updateRoomAirSpeed" /></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">状态：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" value="良好"/></td>
+                        <td height="35px">	
+                        	<input style="height: 15px" type="radio" value="1" name="updateRoomState" id="roomOn">运行</input>
+                        	<input style="height: 15px" type="radio" value="0" name="updateRoomState" id="roomClose">关闭</input>
+                        </td>
                     </tr>
                 </table>
             </form>
             <div id="dialog_button">
-            <button type="button" class="btn btn-primary btn-sm" onclick="closedialog()">确定</button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="sumbitUpdateRoomInfo()">确定</button>
             <button type="button" class="btn btn-primary btn-sm" onclick="closedialog()">取消</button>
             </div>
         </div>
@@ -366,32 +267,35 @@
                 <table>
                     <tr>
                         <td height="35px"><font size="+1">房间号：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="newRoomNum"/></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">温度：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="newRoomTemp"/></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">湿度：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="newRoomHumidity"/></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">模式：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="newRoomType"/></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">风速：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="newRoomAirSpeed"/></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">状态：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
+                        <td height="35px">
+                        	<input style="height: 15px" type="radio" value="1" name="newRoomState" checked="checked">运行</input>
+                        	<input style="height: 15px" type="radio" value="0" name="newRoomState" >关闭</input>
+                        </td>
                     </tr>
                 </table>
             </form>
             <div id="newRoom_button">
-                <button type="button" class="btn btn-primary btn-sm" onclick="closeNewRoom()">确定</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="addNewRoomData()">确定</button>
                 <button type="button" class="btn btn-primary btn-sm" onclick="closeNewRoom()">取消</button>
             </div>
         </div>
@@ -427,5 +331,6 @@
             <script src="../js/plugins/chartJs/Chart.min.js"></script>
             <!-- Toastr -->
             <script src="../js/plugins/toastr/toastr.min.js"></script>
+            <script src="../js/air_condition_control.js"></script>
 </body>
 </html>

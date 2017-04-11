@@ -39,6 +39,12 @@ public class RoomServiceImpl implements RoomServiceI {
 		// TODO Auto-generated method stub
 		return roomDao.updateByPrimaryKeySelective(room);
 	}
+
+	public Map<String, Object> getGetRoomInfoById(Integer room_num) {
+		// TODO Auto-generated method stub
+		return roomDao.getGetRoomInfoById(room_num);
+	}
+
 	
 	
 	

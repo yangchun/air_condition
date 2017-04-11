@@ -12,7 +12,6 @@
     <link href="../js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
     <link href="../css/animate.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-    <script src="../js/equipment_control.js"></script>
     <link href="../css/equipment_control.css" rel="stylesheet">
 </head>
 
@@ -139,7 +138,7 @@
                         <tr>
                             <th>设备编号</th>
                             <th>设备名称</th>
-                            <th>运行状态</th>
+                            <th>设备型号</th>
                             <th>采购时间</th>
                             <th>最近检修时间</th>
                             <th>维修次数</th>
@@ -147,67 +146,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="gradeX">
-                            <td>001</td>
-                            <td>中央空调主机</td>
-                            <td><font style="color: red;">运行中</font></td>
-                            <td>2012-12-12</td>
-                            <td>2015-12-12</td>
-                            <td>3</td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">编辑</button>
-                                <button type="button" class="btn btn-primary btn-xs">删除</button>
-                            </td>
-                        </tr>
-                        <tr class="gradeX">
-                            <td>002</td>
-                            <td>冷却塔</td>
-                            <td><font style="color: red;">运行中</font></td>
-                            <td>2012-12-12</td>
-                            <td>2015-12-12</td>
-                            <td>3</td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">编辑</button>
-                                <button type="button" class="btn btn-primary btn-xs">删除</button>
-                            </td>
-                        </tr>
-                        <tr class="gradeX">
-                            <td>003</td>
-                            <td>冷冻泵</td>
-                            <td><font style="color: red;">运行中</font></td>
-                            <td>2012-12-12</td>
-                            <td>2015-12-12</td>
-                            <td>3</td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">编辑</button>
-                                <button type="button" class="btn btn-primary btn-xs">删除</button>
-                            </td>
-                        </tr>
-
-                        <tr class="gradeX">
-                            <td>004</td>
-                            <td>风机盘管</td>
-                            <td><font style="color: red;">运行中</font></td>
-                            <td>2012-12-12</td>
-                            <td>2015-12-12</td>
-                            <td>3</td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">编辑</button>
-                                <button type="button" class="btn btn-primary btn-xs">删除</button>
-                            </td>
-                        </tr>
-                        <tr class="gradeX">
-                            <td>005</td>
-                            <td>空气处理机</td>
-                            <td><font style="color: red;">运行中</font></td>
-                            <td>2012-12-12</td>
-                            <td>2015-12-12</td>
-                            <td>3</td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">编辑</button>
-                                <button type="button" class="btn btn-primary btn-xs">删除</button>
-                            </td>
-                        </tr>
+                        
                         </tbody>
                     </table>
                 </div>
@@ -260,29 +199,17 @@
             <form>
                 <table>
                     <tr>
-                        <td height="35px"><font size="+1">设备编号：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" /></td>
-                    </tr>
-                    <tr>
                         <td height="35px"><font size="+1">设备名称：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" /></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="newEqName" /></td>
                     </tr>
                     <tr>
-                        <td height="35px"><font size="+1">采购时间：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
-                    </tr>
-                    <tr>
-                        <td height="35px"><font size="+1">最近检修时间：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
-                    </tr>
-                    <tr>
-                        <td height="35px"><font size="+1">维修次数：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum"/></td>
+                        <td height="35px"><font size="+1">设备型号：</font></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="newEqType"/></td>
                     </tr>
                 </table>
             </form>
             <div id="newEquipment_button">
-                <button type="button" class="btn btn-primary btn-sm" onclick="closeNewEquipment()">确定</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="submitNewEquipment()">确定</button>
                 <button type="button" class="btn btn-primary btn-sm" onclick="closeNewEquipment()">取消</button>
             </div>
         </div>
@@ -326,6 +253,7 @@
             <script src="../js/plugins/chartJs/Chart.min.js"></script>
             <!-- Toastr -->
             <script src="../js/plugins/toastr/toastr.min.js"></script>
+             <script src="../js/equipment_control.js"></script>
 
 </body>
 </html>

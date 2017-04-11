@@ -16,4 +16,6 @@ public interface EquipmentMapper {
     int updateByPrimaryKey(Equipment record);
     
     List<Map<String,Object>> getAllEqs();
+    
+    Map<String,Object> getEqInfoByEqId(int eqid);
 }

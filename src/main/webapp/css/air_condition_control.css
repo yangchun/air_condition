@@ -12,11 +12,11 @@
 #dialog {
     background-color:#fff;
     border:5px solid rgba(0,0,0, 0.4);
-    height:300px;
+    height:260px;
     left:50%;
     margin:-200px 0 0 -200px;
     padding:1px;
-    position:fixed !important; /* 浮动对话框 */
+    position:fixed !important; /* 娴姩瀵硅瘽妗� */
     position:absolute;
     top:50%;
     width:450px;
@@ -67,7 +67,7 @@
     left:50%;
     margin:-200px 0 0 -200px;
     padding:1px;
-    position:fixed !important; /* 浮动对话框 */
+    position:fixed !important; /* 娴姩瀵硅瘽妗� */
     position:absolute;
     top:50%;
     width:450px;

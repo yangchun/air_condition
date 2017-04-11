@@ -41,7 +41,6 @@ public class RoleServiceImpl implements RoleServiceI {
 	
 	
 
-	@Override
 	public int delRoleById(int id) {
 		// TODO Auto-generated method stub
 		int n=0;

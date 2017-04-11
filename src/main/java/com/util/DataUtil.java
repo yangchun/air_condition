@@ -31,7 +31,7 @@ public class DataUtil {
 		event_inform.setGrade(grade[rand.nextInt(2)]);
 		event_inform.setInformtime(new Date());
 		event_inform.setState(String.valueOf(rand.nextInt(2)));
-		event_inform.setEqid((int)eq.get("id"));
+		event_inform.setEqid((Integer)eq.get("id"));
 		event_inform.setEqname((String)eq.get("eqname"));
 		event_informDao.insertSelective(event_inform);
 	}
@@ -132,7 +132,7 @@ public class DataUtil {
 		
 		
 		Map<String,Object> eq=eqs.get(rand.nextInt(eqs.size()));
-		int eqid=(int)eq.get("id");
+		int eqid=(Integer)eq.get("id");
 		String eqname=(String)eq.get("eqname");
 		Map<String,String> parms=datas.get(eqid);
 		Iterator<Map.Entry<String, String>> it = parms.entrySet().iterator();

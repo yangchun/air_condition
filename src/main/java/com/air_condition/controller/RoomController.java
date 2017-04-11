@@ -54,6 +54,7 @@ public class RoomController {
 		room.setType(type);
 		room.setState(state);
 		int n=roomService.updateRoomInfo(room);
+		System.out.println("n==="+humidity+"  "+air_speed);
 		if(n>0){
 			return CommonUtil.constructHtmlResponse(1, "ok", null);
 		}
@@ -79,17 +80,24 @@ public class RoomController {
 		room.setTemp("0");
 		room.setHumidity("0");
 		room.setAirSpeed(Double.valueOf("0"));
-		room.setType("ÖÆÀä");
+		room.setType("ï¿½ï¿½ï¿½ï¿½");
 		room.setState(0);
 		int n=roomService.updateRoomInfo(room);
 		if(n>0){
 			return CommonUtil.constructHtmlResponse(1, "ok", null);
 		}
 		return CommonUtil.constructHtmlResponse(0, "fail", null);
-		
 	}
 	
-	
+	@RequestMapping("/getGetRoomInfoById")
+	@ResponseBody
+	public JSONObject getGetRoomInfoById(Integer room_num){
+		Map<String,Object> room=roomService.getGetRoomInfoById(room_num);
+		if(room!=null){
+			return CommonUtil.constructHtmlResponse(1, "ok", room);
+		}
+		return CommonUtil.constructHtmlResponse(0, "fail", null);
+	}
 	
 	
 	
