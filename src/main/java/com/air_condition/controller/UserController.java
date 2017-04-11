@@ -58,7 +58,6 @@ public class UserController {
 		u.setEmail(email);
 		u.setRoleId(role_id);
 		u.setState(1);
-		System.out.println(username+password+realname+role_id);
 		int n=userService.addNewUser(u);
 		if(n>0){
 			return CommonUtil.constructHtmlResponse(1, "ok", null);
