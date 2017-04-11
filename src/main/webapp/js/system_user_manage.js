@@ -218,7 +218,7 @@ function addrol(btn){
 }
 
 //编辑用户信息
-function changedialog(){
+function changedialog(add){
 	var inval = $("#dialog").find("input"),
 	arr1 = new Array(),arr2 = new Array(),
 	json={
@@ -238,13 +238,14 @@ function changedialog(){
 		json[arr1[i]] = arr2[i];
 	}
 	//将修改的用户信息封装成json传给后台
-	$.ajax({//出错
+	$.ajax({
 		url:"../user/updateUserInfo",
 		type:"POST",
 		data:json,
 		dataType:"json",
 		success:function back(data){
 			var r = JSON.parse(data);
+			alert(r.code);
 		},
 		error:function back(){
 			alert("修改信息失败!");
