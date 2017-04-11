@@ -15,7 +15,7 @@ public interface Event_InformMapper {
 
     int updateByPrimaryKey(Event_Inform record);
     
-    List<Map<String,Object>> getAllEvent_Inform();
+    List<Map<String,Object>> getAllEvent_Inform(int begin, int size);
     
     int dealEventInform(int id);
 }

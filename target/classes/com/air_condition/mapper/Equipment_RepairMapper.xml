@@ -9,7 +9,7 @@
     <result column="desc" property="desc" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, eqid, userid, repairtime, desc
+    id, eqid, userid, repairtime, equipment_repair.desc
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,7 +23,7 @@
   </delete>
   <insert id="insert" parameterType="com.air_condition.domain.Equipment_Repair" >
     insert into equipment_repair (id, eqid, userid, 
-      repairtime, desc)
+      repairtime, equipment_repair.desc)
     values (#{id,jdbcType=INTEGER}, #{eqid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
       #{repairtime,jdbcType=TIMESTAMP}, #{desc,jdbcType=VARCHAR})
   </insert>
@@ -43,7 +43,7 @@
         repairtime,
       </if>
       <if test="desc != null" >
-        desc,
+        equipment_repair.desc,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -77,7 +77,7 @@
         repairtime = #{repairtime,jdbcType=TIMESTAMP},
       </if>
       <if test="desc != null" >
-        desc = #{desc,jdbcType=VARCHAR},
+        equipment_repair.desc = #{desc,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -87,7 +87,7 @@
     set eqid = #{eqid,jdbcType=INTEGER},
       userid = #{userid,jdbcType=INTEGER},
       repairtime = #{repairtime,jdbcType=TIMESTAMP},
-      desc = #{desc,jdbcType=VARCHAR}
+      equipment_repair.desc = #{desc,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <delete id="delEq_RepairByEqId">

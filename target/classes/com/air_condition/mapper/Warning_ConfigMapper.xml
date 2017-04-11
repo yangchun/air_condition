@@ -68,7 +68,8 @@
 		LEFT JOIN role ON `user`.role_id = role.id
 		WHERE
 		`user`.id = inform_user
-		) as inform_user
+		) as inform_user,
+		warning_config.state
 		FROM
 		warning_config
 		LEFT JOIN equipment ON eqid = equipment.id
@@ -81,22 +82,23 @@
 	
 	
 	<update id="updateWarning_config" parameterType="com.air_condition.domain.Warning_Config">
+		update warning_config
 		<set>
 			<if test="warningTemp != null">
-				warningTemp = #{warningTemp,jdbcType=BIGINT},
+				warning_temp = #{warningTemp,jdbcType=BIGINT},
 			</if>
 			<if test="warningPower != null">
-				warningPower = #{warningPower,jdbcType=BIGINT},
+				warning_power = #{warningPower,jdbcType=BIGINT},
 			</if>
 			<if test="informUser != null">
-				informUser = #{informUser,jdbcType=INTEGER},
-			</if>
-			<if test="email != null">
-				state = #{state,jdbcType=INTEGER},
+				inform_user = #{informUser,jdbcType=INTEGER},
 			</if>
 		</set>
 		where eqid = #{eqid,jdbcType=INTEGER}
 	</update>
+	<select id="getWarning_configByEqId" resultType="java.util.Map">
+		select eqid,warning_temp,warning_power,inform_user,warning_config.state,eqname from warning_config LEFT JOIN equipment ON eqid=equipment.id where eqid=#{0}
+	</select>
 	
 	
 	

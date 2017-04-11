@@ -57,12 +57,11 @@ public class EquipmentController {
 	
 	@RequestMapping("/updateEqInfo")
 	@ResponseBody
-	public JSONObject updateEqInfo(String eqname,String eqtype,String eqbuytime){
+	public JSONObject updateEqInfo(Integer eqid,String eqname,String eqtype){
 		Equipment eq=new Equipment();
+		eq.setId(eqid);
 		eq.setEqname(eqname);
 		eq.setEqtype(eqtype);
-		Date eqtime=new Date(eqbuytime);
-		eq.setEqbuytime(eqtime);
 		int n=equipmentService.updateEqInfo(eq);
 		if(n>0){
 			return CommonUtil.constructHtmlResponse(1, "ok", null);

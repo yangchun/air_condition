@@ -38,7 +38,7 @@ public class WarningConfigController {
 		return CommonUtil.constructHtmlResponse(0, "fail", null);
 	}
 	
-	@RequestMapping("/updateWarning_configstate")
+	@RequestMapping("/updateWarning_config")
 	@ResponseBody
 	public JSONObject updateWarning_config(Integer eqid,Long warningTemp,Long warningPower,Integer informUser,Integer state){
 		Warning_Config warning_config=new Warning_Config();
@@ -50,6 +50,16 @@ public class WarningConfigController {
 		int n=warningconfigServices.updateWarning_config(warning_config);
 		if(n>0){
 			return CommonUtil.constructHtmlResponse(1, "ok", null);
+		}
+		return CommonUtil.constructHtmlResponse(0, "fail", null);
+	}
+	
+	@RequestMapping("/getWarning_configByEqId")
+	@ResponseBody
+	public JSONObject getWarning_configByEqId(Integer eqid){
+		Map<String,Object> warning_config=warningconfigServices.getWarning_configByEqId(eqid);
+		if(warning_config!=null){
+			return CommonUtil.constructHtmlResponse(1, "ok", warning_config);
 		}
 		return CommonUtil.constructHtmlResponse(0, "fail", null);
 	}

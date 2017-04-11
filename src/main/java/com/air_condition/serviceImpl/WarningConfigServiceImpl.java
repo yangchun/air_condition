@@ -26,5 +26,9 @@ public class WarningConfigServiceImpl implements WarningConfigServiceI {
 		// TODO Auto-generated method stub
 		return warningconfigDao.updateWarning_config(warning_config);
 	}
+	public Map<String, Object> getWarning_configByEqId(int eqid) {
+		// TODO Auto-generated method stub
+		return warningconfigDao.getWarning_configByEqId(eqid);
+	}
 
 }

@@ -13,7 +13,7 @@
     <link href="../css/animate.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
   	<link href="../css/warning_configurationl.css" rel="stylesheet">
-  	 <script src="../js/warning_configuration.js"></script>
+  
 </head>
 
 <body>
@@ -125,7 +125,6 @@
                             <h5>告警配置</h5>
                         </div>
                         <div class="ibox-content">
-                            <button onclick="addNewWarnConfig()" class="btn btn-primary">新增</button>
                             <table class="table table-striped table-bordered table-hover " id="editable" >
                                 <thead>
                                 <tr>
@@ -137,56 +136,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="gradeX">
-                                    <td>中央空调主机</td>
-                                    <td>70</td>
-                                    <td>2000</td>
-                                    <td>管理员</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">编辑</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>冷却泵</td>
-                                    <td>70</td>
-                                    <td>2000</td>
-                                    <td>管理员</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" onclick="adjust()">编辑</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>冷却塔</td>
-                                    <td>70</td>
-                                    <td>2000</td>
-                                    <td>管理员</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs"  onclick="adjust()">编辑</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>空气处理机</td>
-                                    <td>70</td>
-                                    <td>2000</td>
-                                    <td>管理员</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs"  onclick="adjust()">编辑</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>风机盘管</td>
-                                    <td>70</td>
-                                    <td>2000</td>
-                                    <td>管理员</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs"  onclick="adjust()">编辑</button>
-                                        <button type="button" class="btn btn-primary btn-xs">关闭</button>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -200,26 +149,27 @@
         <div id="dialog">
             <form>
                 <table>
+                	<input type="hidden" value="" id="updateConfigEqId"/>
                     <tr>
-                        <td height="35px"><font size="+1">设备：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" value="中央空调主机"/></td>
+                        <td height="35px"><font size="+1">设备名称：</font></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="updateConfigEqName"/></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">最高温度：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" value="80"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="updateConfigEqTemp" /></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">最大功率：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" value="2000"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="updateConfigEqPower" /></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">通知对象：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" value="管理员"/></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="updateConfigEqInformUser" /></td>
                     </tr>
                 </table>
             </form>
             <div id="dialog_button">
-                <button type="button" class="btn btn-primary btn-sm" onclick="closedialog()">确定</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="submitUpdateConfig()">确定</button>
                 <button type="button" class="btn btn-primary btn-sm" onclick="closedialog()">取消</button>
             </div>
         </div>
@@ -230,25 +180,25 @@
             <form>
                 <table>
                     <tr>
-                        <td height="35px"><font size="+1">设备：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" /></td>
+                        <td height="35px"><font size="+1">设备编号：</font></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" id="newEqId" /></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">最高温度：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" /></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="newEqTemp" /></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">最大功率：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" /></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="newEqPower" /></td>
                     </tr>
                     <tr>
                         <td height="35px"><font size="+1">通知对象：</font></td>
-                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="houseNum" /></td>
+                        <td height="35px"><input style="height: 25px" class="form-control" type="text" name="newEqInformuser" /></td>
                     </tr>
                 </table>
             </form>
             <div id="newWarnConfig_button">
-                <button type="button" class="btn btn-primary btn-sm" onclick="closeNewWarnConfig()">确定</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="submitNewConfig()">确定</button>
                 <button type="button" class="btn btn-primary btn-sm" onclick="closeNewWarnConfig()">取消</button>
             </div>
         </div>
@@ -272,7 +222,7 @@
     <script src="../js/inspinia.js"></script>
     <script src="../js/plugins/pace/pace.min.js"></script>
     
-   
+   	 <script src="../js/warning_configuration.js"></script>
 
 </body>
 </html>

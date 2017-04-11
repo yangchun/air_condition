@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.air_condition.dao.EquipmentMapper;
 import com.air_condition.dao.Equipment_DataMapper;
+import com.air_condition.dao.Equipment_RepairMapper;
 import com.air_condition.dao.Event_InformMapper;
 import com.air_condition.domain.Equipment_Data;
+import com.air_condition.domain.Equipment_Repair;
 import com.air_condition.domain.Event_Inform;
 @Service
 public class DataUtil {
@@ -18,6 +20,8 @@ public class DataUtil {
 	private EquipmentMapper equipmentDao;
 	@Autowired
 	private Equipment_DataMapper equipmentdataDao;
+	@Autowired
+	private Equipment_RepairMapper equipmentrepairDao;
 	
 	Random rand=new Random();
 	//产生随机警告事件通知
@@ -157,6 +161,18 @@ public class DataUtil {
 	
 	
 	
+	
+	//产生设备维修记录事件
+	public void produceEqRepairData(){
+		String[] desces={"设备温度过高","设备短路","功率过大"};
+		List<Map<String,Object>> eqs=equipmentDao.getAllEqs();
+		Map<String,Object> eq=eqs.get(rand.nextInt(eqs.size()));
+		Equipment_Repair eqrepair=new Equipment_Repair();
+		eqrepair.setDesc(desces[rand.nextInt(desces.length)]);
+		eqrepair.setEqid((Integer)eq.get("id"));
+		eqrepair.setRepairtime(new Date());
+		equipmentrepairDao.insertSelective(eqrepair);
+	}
 	
 	
 	
