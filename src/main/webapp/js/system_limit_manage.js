@@ -32,11 +32,11 @@ function addData(lidata){
 		+"</td></tr>";
 	}
 	$("#editable").find("tbody").append(str);
-	$("editable").find("tbody>tr").each(function(){
-		$(this).find('tr eq:(3)').Text()=="正常"?
-			$(this).find('tr eq:(3)').css("color","black")
-			:$(this).find('tr eq:(3)').css("color","red");
-	})
+	$("#editable").find("tbody>tr").each(function(){
+		$(this).find("td:eq(3)").text()=="禁用"?
+				$(this).find("td:eq(3)").css("color","red")
+				:$(this).find("td:eq(3)").css("color","black");		
+		})
 }
 
 //添加新权限
@@ -136,8 +136,10 @@ function chlimitinfo(){
 				if(td0==json2.id){
 						if(json2.state==1){
 							json2.state="正常";
+							tr.eq(j).find("td").eq(3).css("color","black");
 						}else{
 							json2.state = "禁用";
+							tr.eq(j).find("td").eq(3).css("color","red");
 						}
 					//for(var m=0;m<tdl-1;m++){
 						tr.eq(j).find("td").eq(0).text(json2.id);
@@ -163,22 +165,23 @@ function delLimit(btn){
 	var json={
 			"id":tr.find("td:eq(0)").text()
 	};
-	$.ajax({
-		url:"../limit/delLimitById",
-		type:"POST",
-		data:json,
-		dataType:"json",
-		success:function back(data){
-			var msg = "您真的要删除该权限吗？";
-			if(confirm(msg)==true){
+	var msg = "您真的要删除该权限吗？";
+	if(confirm(msg)==true){
+		$.ajax({
+			url:"../limit/delLimitById",
+			type:"POST",
+			data:json,
+			dataType:"json",
+			success:function back(data){
 				tr.remove();
+			},
+			error:function(){
+				alert("删除权限失败");
 			}
-		},
-		error:function(){
-			alert("删除权限失败");
-		}
-	})
-	
+		});
+	}else{
+		return false;
+	}
 	
 }
 

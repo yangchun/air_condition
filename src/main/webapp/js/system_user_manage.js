@@ -33,9 +33,9 @@ function addData(data){
 	var table = $("#editable");
 	table.find("tbody").append(str);                                                                                                                                                                                                                                                    
 	table.find("tbody>tr").each(function(){
-		$(this).find("td:eq(4)").text()=="禁用"?
-				$(this).find("td:eq(4)").css("color","red")
-				:$(this).find("td:eq(4)").css("color","black");		
+		$(this).find("td:eq(6)").text()=="禁用"?
+				$(this).find("td:eq(6)").css("color","red")
+				:$(this).find("td:eq(6)").css("color","black");		
 	})
 		
 }
@@ -80,6 +80,7 @@ function addNewUser() {
 	});
 	  
 	function addra(data){
+		
 		 var r = JSON.parse(data);
 		 var rolist=r.data,
 		 len=rolist.length,
@@ -87,6 +88,7 @@ function addNewUser() {
 		 for(var i=0;i<len;i++){
 			 rol+="<option id='"+rolist[i].id+"'>"+rolist[i].rolename+"</option>";
 		 }
+		 $("#addNewUser").find("select option").remove();
 		 $("#addNewUser").find("select").append(rol);
 	 }
 }
@@ -150,7 +152,7 @@ function addUserInfo(){
 //删除用户
 function deluser(btn){
 	var tr = $(btn).parent().parent();
-	alert(tr.find("td:eq(0)").text());
+	
 	var msg = "您真的要删除该用户吗？";
 	if(confirm(msg)==true){
 		$.ajax({
@@ -166,7 +168,7 @@ function deluser(btn){
 			}
 		});
 	}else{
-		return false;//有bug
+		return false;
 	}
 	
 	
@@ -185,6 +187,7 @@ function addrol(btn){
 			for(var i=0;i<len;i++){
 				sel +="<option id='"+rolist[i].id+"'>"+rolist[i].rolename+"</option>"; 
 			}
+			$("#dialog").find("select option").remove();
 			$("#dialog").find("select").append(sel);
 		},
 		error:function(){
@@ -253,9 +256,12 @@ function changedialog(add){
 				if(td0==json.userid){
 						if(json.state==1){
 							json.state="正常";
+							tr.eq(j).find("td").eq(6).css("color","black");				
 						}else{
 							json.state = "禁用";
+							tr.eq(j).find("td").eq(6).css("color","red");
 						}
+						
 					//for(var m=0;m<tdl-1;m++){
 						tr.eq(j).find("td").eq(0).text(json.userid);
 						tr.eq(j).find("td").eq(1).text(json.username);
