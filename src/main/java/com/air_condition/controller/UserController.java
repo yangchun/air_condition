@@ -60,7 +60,7 @@ public class UserController {
 		u.setState(1);
 		int n=userService.addNewUser(u);
 		List<Map<String,Object>> users=userService.getAllUser();
-		Map<String,Object> newUser=users.get(users.size());
+		Map<String,Object> newUser=users.get(users.size()-1);
 		if(n>0){
 			return CommonUtil.constructHtmlResponse(1, "ok", newUser.get("id"));
 		}

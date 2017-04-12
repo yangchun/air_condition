@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.air_condition.dao.LimitMapper;
 import com.air_condition.dao.RoleMapper;
 import com.air_condition.dao.Role_LimitMapper;
+import com.air_condition.domain.Role;
+import com.air_condition.domain.Role_Limit;
 import com.air_condition.service.RoleServiceI;
 @Service
 public class RoleServiceImpl implements RoleServiceI {
@@ -52,6 +54,19 @@ public class RoleServiceImpl implements RoleServiceI {
 			return 0;
 		}
 		return n;
+	}
+
+	public int updateRoleInfo(Role role,Integer roleid,List<Integer> limits){
+		// TODO Auto-generated method stub
+		roleDao.updateByPrimaryKeySelective(role);
+		role_limitDao.delRoleLimitByRoleId(roleid);
+		for(Integer i:limits){
+			Role_Limit rl=new Role_Limit();
+			rl.setRoleid(roleid);
+			rl.setLimitid(i);
+			role_limitDao.insertSelective(rl);
+		}
+		return 1;
 	}
 
 }
