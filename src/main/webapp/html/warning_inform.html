@@ -12,6 +12,7 @@
     <link href="../js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
     <link href="../css/animate.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/warning_inform.css" rel="stylesheet">
 </head>
 
 <body>
@@ -123,18 +124,22 @@
                             <table class="table table-striped table-bordered table-hover " id="editable" >
                                 <thead>
                                 <tr>
-                                    <th>设备</th>
-                                    <th>通知时间</th>
-                                    <th>等级</th>
-                                    <th>告警描述</th>
-                                    <th>状态</th>
-                                    <th>操作</th>
+                                    <th width="20%">设备</th>
+                                    <th width="25%">通知时间</th>
+                                    <th width="15%">等级</th>
+                                    <th width="15%">告警描述</th>
+                                    <th width="10%">状态</th>
+                                    <th width="15%">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 
                                 </tbody>
                             </table>
+                            <div id="pageButton">
+                             <button class="btn btn-danger btn-rounded btn-outline" type="button" onclick="prePage()">上一页</button>&nbsp;&nbsp;
+                             <button class="btn btn-danger btn-rounded btn-outline" type="button" onclick="nextPage()">下一页</button>
+                        	</div>
                         </div>
                     </div>
                 </div>

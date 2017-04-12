@@ -1,10 +1,10 @@
+var page=1;
 $(function(){
-	onload();
+	onload(page);
 });
-
-function onload(){
+function onload(page){
 	$.ajax({
-		url:"../eventinform/getAllEventInform",
+		url:"../eventinform/getAllEventInform?page="+page,
 		type:"GET",
 		success:function back(item){
 			initRoomData(item);
@@ -18,6 +18,7 @@ function initRoomData(item){
 	var r = JSON.parse(item);
 	var str;
 	var list=r.data;
+	$("#editable tbody").children().remove();
 	for(var i=0;i<list.length;i++){
 		var g="";
 		if(list[i].grade=="一级"){
@@ -80,5 +81,15 @@ function jsTimeToString(time){
     var strTime = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;      
 return strTime;     
 }
-
-
+function prePage(){
+	if(page<=1){
+		onload(page);
+	}else{
+		page=page-1;
+		onload(page);
+	}
+}
+function nextPage(){
+	page=page+1;
+	onload(page);
+}
