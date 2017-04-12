@@ -13,5 +13,7 @@ public interface Warning_ConfigMapper {
     
     int updateWarning_config(Warning_Config warning_config);
     
+    Map<String,Object> getWarning_configByEqId(Integer eqid);
+    
     
 }

@@ -131,9 +131,8 @@ function addUserInfo(){
 		success:function back(data){
 			//在页面上添加新用户
 			var r=JSON.parse(data);
-			var userid = r.data;
 			var html;
-			html= "<tr><td class='hidinfo'>"+userid.id+"</td><td>"+json.username+"</td><td class='hidinfo'>"+json.password+"</td><td>"
+			html= "<tr><td class='hidinfo'>"+r.data+"</td><td>"+json.username+"</td><td class='hidinfo'>"+json.password+"</td><td>"
 			+sel.val()+"</td><td>"+json.realname+"</td><td>"+json.email+"</td><td>"+"正常"+"</td><td>"+
 			"<button type='button' class='btn btn-primary btn-xs' onclick='adjust(),addrol(this)'>编辑</button> "+
 		    "<button type='button' class='btn btn-primary btn-xs' onclick='deluser(this)'>删除</button> "+

@@ -14,14 +14,15 @@ public class EventInformServiceImpl implements EventInformServiceI {
 	@Autowired
 	private Event_InformMapper eventinformDao;
 	
-	public List<Map<String, Object>> getAllEvent_Inform() {
-		// TODO Auto-generated method stub
-		return eventinformDao.getAllEvent_Inform();
-	}
 
 	public int dealEventInform(int id) {
 		// TODO Auto-generated method stub
 		return eventinformDao.dealEventInform(id);
+	}
+
+	public List<Map<String, Object>> getAllEvent_Inform(int begin, int size) {
+		// TODO Auto-generated method stub
+	     return eventinformDao.getAllEvent_Inform(begin,size);
 	}
 
 }

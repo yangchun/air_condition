@@ -116,10 +116,7 @@
 		eqname,
 		eqtype,
 		eqbuytime,
-		(SELECT count(*) FROM equipment_repair WHERE eqid = equipment.id) AS
-		repairnum,
-		(select MAX(repairtime) from equipment_repair where eqid=equipment.id) as
-		repairtime
+		state
 		FROM
 		equipment WHERE equipment.id=#{0}
 	</select>

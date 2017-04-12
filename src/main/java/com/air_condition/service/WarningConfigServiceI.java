@@ -9,4 +9,5 @@ public interface WarningConfigServiceI {
 	 List<Map<String,Object>> getAllWarning_Config();
 	 int updateWarning_configstate(int eqid,int state);
 	 int updateWarning_config(Warning_Config warning_config);
+	 Map<String,Object> getWarning_configByEqId(int eqid);
 }

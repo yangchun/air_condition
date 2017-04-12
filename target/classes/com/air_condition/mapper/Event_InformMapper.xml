@@ -116,7 +116,7 @@
   </update>
   
   <select id="getAllEvent_Inform" resultType="java.util.Map">
-  	select id,eqname,informtime,grade,event_inform.desc,state from event_inform
+  	select id,eqname,informtime,grade,event_inform.desc,state from event_inform limit #{0},#{1}
   </select>
   <update id="dealEventInform">
    	update event_inform

@@ -65,18 +65,46 @@ function delEq(br,eqid){
 		}
 	});
 }
-function updateEqInfo(){
-	
-	
-	
-	
-	
-	
-	
+function updateEqInfo(eqid){
+	$.ajax({
+		url:"../equipment/getEqInfoByEqId?eqid="+eqid,
+		type:"GET",
+		success:function back(item){
+			var r = JSON.parse(item);
+			var eqinfo=r.data;
+			$("#updateEqId").val(eqinfo.id);
+			$("#updateEqName").val(eqinfo.eqname);
+			$("#updateEqType").val(eqinfo.eqtype);
+			$("#updateEqBuyTime").val(jsTimeToString(eqinfo.eqbuytime));
+		},
+		error:function back(){
+			alert("系统提示：获取信息失败");
+		}
+	});
+}
+function submitUpdateEq(){
+	var datas={
+			"eqid":$("#updateEqId").val(),
+			"eqname":$("#updateEqName").val(),
+			"eqtype":$("#updateEqType").val()
+		}
+		$.ajax({
+			type:"POST",
+			url:"../equipment/updateEqInfo",
+			data:datas,
+			success: function back(data){
+				$("#editable tbody").children().remove();
+				onload();
+		    },
+		    error: function back(data){
+		    	alert("系统提示");
+		    }
+		});
+	closedialog();
 }
 
 //显示灰色 jQuery 遮罩层
-    function adjust() {
+    function adjust(eqid) {
         var bh = $("body").height();
         var bw = $("body").width();
         $("#fullbg").css({
@@ -85,7 +113,7 @@ function updateEqInfo(){
             display:"block"
         });
         $("#dialog").show();
-        updateEqInfo();
+        updateEqInfo(eqid);
     }
 //关闭灰色 jQuery 遮罩 
 function closedialog() {

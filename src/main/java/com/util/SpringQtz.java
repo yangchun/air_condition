@@ -32,7 +32,10 @@ public class SpringQtz {
 	protected void produceEqData(){
 		dataUtil.produceEqData();
 	}
-	
+	//产生设备维修数据
+	protected void produceEqRepairData(){
+		dataUtil.produceEqRepairData();
+	}
 
 	
 	

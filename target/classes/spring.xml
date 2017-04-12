@@ -28,7 +28,15 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd
 			<value>produceEqData</value>
 		</property>
 	</bean>
-	
+	<bean id="DailyTaskQtzJobMethod3"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="DailyTaskQtzJob" />
+		</property>
+		<property name="targetMethod">  <!-- 要执行的方法名称 -->
+			<value>produceEqRepairData</value>
+		</property>
+	</bean>
 	
 	<!-- ======================== 调度触发器 ======================== -->
 	<bean id="DailyTaskCronTriggerBean"
@@ -43,6 +51,12 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		<!-- 每天隔1分钟触发, -->
 		<property name="cronExpression" value="0 0/1 * * * ?"></property>
 	</bean>
+	<bean id="DailyTaskCronTriggerBean2"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="DailyTaskQtzJobMethod3"></property>
+		<!-- 每天隔1分钟触发, -->
+		<property name="cronExpression" value="0 0/5 * * * ?"></property>
+	</bean>
 	<!-- ======================== 调度工厂 ======================== -->
 	<bean id="SpringJobSchedulerFactoryBean"
 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
@@ -50,6 +64,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd
 			<list>
 				<ref bean="DailyTaskCronTriggerBean" />
 				<ref bean="DailyTaskCronTriggerBean1" />
+				<ref bean="DailyTaskCronTriggerBean2" />
 			</list>
 		</property>
 	</bean>
