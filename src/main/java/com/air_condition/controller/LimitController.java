@@ -65,8 +65,10 @@ public class LimitController {
 		limit.setState(1);
 		limit.setLimitdesc(limitdesc);
 		int n=limitService.addNewLimit(limit);
+		List<Map<String,Object>> limits=limitService.getAllLimits();
+		Map<String,Object> mp=limits.get(limits.size());
 		if(n>0){
-			return CommonUtil.constructHtmlResponse(1, "ok", null);
+			return CommonUtil.constructHtmlResponse(1, "ok", mp.get("id"));
 		}
 		return CommonUtil.constructHtmlResponse(0, "fail", null);
 	}
