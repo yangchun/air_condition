@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.air_condition.domain.Role;
@@ -62,7 +63,7 @@ public class RoleController {
 	
 	@RequestMapping("/updateRoleInfo")
 	@ResponseBody
-	public JSONObject updateRoleInfo(Integer id,String rolename,String roledesc,@RequestBody List<Integer> limits,Integer state){
+	public JSONObject updateRoleInfo(Integer id,String rolename,String roledesc,@RequestParam(value="limits[]") List<Integer> limits,Integer state){
 		Role r=new Role();
 		r.setId(id);
 		r.setRolename(rolename);

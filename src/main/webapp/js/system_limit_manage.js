@@ -11,6 +11,8 @@ window.onload = function(){
 		}
 	});
 }
+
+
 function addData(lidata){
 	var r = JSON.parse(lidata);
 	var lilist = r.data,
